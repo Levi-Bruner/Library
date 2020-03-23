@@ -38,6 +38,23 @@ namespace console_library.Models
         Console.WriteLine("Successfully checked out.");
       }
     }
+    public void ReturnBook(string selection)
+    {
+      Book selectedBook = ValidateBook(selection, CheckedOut);
+      {
+        if (selectedBook == null)
+        {
+          Console.Clear();
+          System.Console.WriteLine(@"Invalid Selection");
+          return;
+        }
+        selectedBook.Available = true;
+        CheckedOut.Remove(selectedBook);
+        Books.Add(selectedBook);
+        Console.Clear();
+        Console.WriteLine("Successfully returned a book!");
+      }
+    }
     private Book ValidateBook(string selection, List<Book> booklist)
     {
       int bookIndex = 0;
